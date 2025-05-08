@@ -4,15 +4,16 @@ import axios from "axios";
 function App() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState("");
-  const [imagePreview, setImagePreview] = useState(null); 
+  const [imagePreview, setImagePreview] = useState(null);
   const [isPredicting, setIsPredicting] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
     setIsPredicting(false);
     setResult(""); // Clear previous prediction
-  
+
     if (selectedFile) {
       const previewUrl = URL.createObjectURL(selectedFile);
       setImagePreview(previewUrl);
@@ -28,7 +29,7 @@ function App() {
     setIsPredicting(true);
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/predict", formData, {
+      const res = await axios.post(API_URL, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setResult(res.data.prediction);
@@ -40,8 +41,8 @@ function App() {
   return (
     <div className="container">
       <h1>Cat vs Dog Classifier 🐱🐶</h1>
-      <p className="accuracy-text">Accuracy: 87%</p> {/* Accuracy Text Below Title */}
-
+      <p className="accuracy-text">Accuracy: 87%</p>{" "}
+      {/* Accuracy Text Below Title */}
       <form onSubmit={handleSubmit} className="form">
         <input
           type="file"
@@ -54,17 +55,17 @@ function App() {
         <label htmlFor="fileInput" className="file-label">
           Choose an image
         </label>
-        <button type="submit" className="submit-btn" disabled={isPredicting}>
-          {isPredicting ? "Predicting..." : "Predict"}
-        </button>
+        {!result && (
+          <button type="submit" className="submit-btn" disabled={isPredicting}>
+            {isPredicting ? "Predicting..." : "Predict"}
+          </button>
+        )}
       </form>
-
       {imagePreview && (
         <div className="image-preview">
           <img src={imagePreview} alt="Preview" className="preview-img" />
         </div>
       )}
-
       {result && <h2>Prediction: {result}</h2>}
     </div>
   );
