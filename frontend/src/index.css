@@ -7,14 +7,18 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  color: #ddd;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;   /* Prevent horizontal scroll */
+  overflow-y: auto;     /* Enable vertical scrolling */
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #1e1e1e;  /* Dark background */
-  color: #ddd;  /* Light gray text for readability */
-  overflow: hidden;
+  align-items: flex-start;
 }
+
 
 .container {
   display: flex;
