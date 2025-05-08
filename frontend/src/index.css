@@ -1,0 +1,122 @@
+/* index.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1e1e;  /* Dark background */
+  color: #ddd;  /* Light gray text for readability */
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  background-color: #333;  /* Slightly lighter than the background */
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px); /* Blurred background effect */
+  transition: all 0.3s ease-in-out;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: white;  /* Muted blue color for the title */
+  font-weight: 600;
+}
+
+.form {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  background-color: #4CAF50;  /* Softer green */
+  color: white;
+  padding: 14px 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.file-label:hover {
+  background-color: #45a049;  /* Slightly darker green */
+}
+
+.submit-btn {
+  background-color: #009688;  /* Teal color */
+  color: white;
+  padding: 14px 25px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:hover {
+  background-color: #00796b;  /* Slightly darker teal */
+}
+
+.submit-btn:disabled {
+  background-color: #444;  /* Dark grey for disabled state */
+  cursor: not-allowed;
+}
+
+.image-preview {
+  margin-top: 20px;
+  max-width: 300px;
+  max-height: 300px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  border: 3px solid #fff;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 1.6rem;
+  color: white;  /* Same muted blue color for prediction result */
+  font-weight: 600;
+}
+.accuracy-text {
+  font-size: 1.1rem;
+  color: #9acd32; /* A soft lime green to stand out without hurting the eyes */
+  margin: 10px 0 30px; /* top:10px, bottom:30px to separate it from the button */
+  font-weight: 600;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Soft shadow for glow */
+}
