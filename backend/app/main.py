@@ -4,7 +4,7 @@ from app.routes.predict import router as predict_router
 
 app = FastAPI()
 
-# Allow CORS for specific origins (React frontend running on localhost:5173)
+# Allow CORS for specific origins
 origins = [
     "https://fcatvdog.onrender.com",  # your deployed frontend
     "http://localhost:5173",          # local dev frontend
