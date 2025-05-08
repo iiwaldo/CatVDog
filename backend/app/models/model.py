@@ -69,4 +69,5 @@ def predict_image(model, image):
         output = model(image_tensor)
         probs = torch.softmax(output, dim=1)
         predicted = torch.argmax(probs, dim=1).item()
+        print(class_names[predicted])
         return class_names[predicted]  # Return the class index
