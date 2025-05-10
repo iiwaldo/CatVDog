@@ -55,8 +55,8 @@ transform = transforms.Compose([
 
 # Load your saved model
 def load_model():
-    model = CatVDogV0(input_shape=3, hidden_units=32, output_shape=2)
-    model_path = os.path.join(os.path.dirname(__file__), 'model_0_v3.pth')
+    model = CatVDogV0(input_shape=3, hidden_units=64, output_shape=2)
+    model_path = os.path.join(os.path.dirname(__file__), 'model_1_v6.pth')
     model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu'))) 
     return model
 
