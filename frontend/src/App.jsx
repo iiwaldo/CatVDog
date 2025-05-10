@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="container">
       <h1>Cat vs Dog Classifier 🐱🐶</h1>
-      <p className="accuracy-text">Accuracy: 87%</p>{" "}
+      <p className="accuracy-text">Accuracy: 89%</p>{" "}
       {/* Accuracy Text Below Title */}
       <form onSubmit={handleSubmit} className="form">
         <input
