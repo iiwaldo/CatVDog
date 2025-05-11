@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -7,6 +7,20 @@ function App() {
   const [imagePreview, setImagePreview] = useState(null);
   const [isPredicting, setIsPredicting] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL;
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await axios.get("https://catvdog-yrkw.onrender.com/");
+      } catch (err) {
+        console.error("Initial GET failed:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -40,33 +54,42 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Cat vs Dog Classifier 🐱🐶</h1>
-      <p className="accuracy-text">Accuracy: 92%</p>{" "}
-      {/* Accuracy Text Below Title */}
-      <form onSubmit={handleSubmit} className="form">
-        <input
-          type="file"
-          onChange={handleChange}
-          accept="image/*"
-          className="file-input"
-          style={{ display: "none" }}
-          id="fileInput"
-        />
-        <label htmlFor="fileInput" className="file-label">
-          Choose an image
-        </label>
-        {!result && (
-          <button type="submit" className="submit-btn" disabled={isPredicting}>
-            {isPredicting ? "Predicting..." : "Predict"}
-          </button>
-        )}
-      </form>
-      {imagePreview && (
-        <div className="image-preview">
-          <img src={imagePreview} alt="Preview" className="preview-img" />
-        </div>
+      {loading ? (
+        <div className="spinner"></div>
+      ) : (
+        <>
+          <h1>Cat vs Dog Classifier 🐱🐶</h1>
+          <p className="accuracy-text">Accuracy: 92%</p>
+          <form onSubmit={handleSubmit} className="form">
+            <input
+              type="file"
+              onChange={handleChange}
+              accept="image/*"
+              className="file-input"
+              style={{ display: "none" }}
+              id="fileInput"
+            />
+            <label htmlFor="fileInput" className="file-label">
+              Choose an image
+            </label>
+            {!result && (
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={isPredicting}
+              >
+                {isPredicting ? "Predicting..." : "Predict"}
+              </button>
+            )}
+          </form>
+          {imagePreview && (
+            <div className="image-preview">
+              <img src={imagePreview} alt="Preview" className="preview-img" />
+            </div>
+          )}
+          {result && <h2>Prediction: {result}</h2>}
+        </>
       )}
-      {result && <h2>Prediction: {result}</h2>}
     </div>
   );
 }
